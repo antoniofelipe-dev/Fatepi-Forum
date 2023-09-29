@@ -16,8 +16,10 @@
             <img src="{% static 'usuarios/img/Logo_FF.png' %}" alt="Logo">
         </div>
         <div class="titulo"><h1>Faça seu cadastro</h1></div>
-    `</br>
-        <form accept="{% url 'cadastro' %}" method="POST"> {% csrf_token %}
+    
+    {{error}}
+    </br>
+        <form action="" method="POST"> {% csrf_token %}
             <label for="nome">Nome:</label>
             <input type="text" id="nome" name="nome" required>
 

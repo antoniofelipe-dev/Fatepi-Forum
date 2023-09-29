@@ -1,154 +1,128 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fórum de Perguntas e Respostas Gamificado</title>
+    <title>Fórum de Perguntas e Respostas - Home</title>
     <link rel="stylesheet" href="styles.css">
-
+</head>
+<body>
     <style>
         /* Reset de estilos padrão do navegador */
-        body,
-        h1,
-        h2,
-        h3,
-        p,
-        ul,
-        ol,
-        li {
-            margin: 0;
-            padding: 0;
-        }
+body, h1, h2, h3, p, ul, ol, li, nav, a, form, label, input, button {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        /* Estilos gerais */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            color: #333;
-        }
+/* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #166BCE;
+    color: #fff;
+}
 
-        header {
-            background-color: #166BCE;
-            color: #fff;
-            text-align: center;
-            padding: 20px;
-        }
+header {
+    background-color: #125ea3;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
 
-        header h1 {
-            font-size: 36px;
-            margin-bottom: 10px;
-        }
+nav {
+    background-color: #125ea3;
+}
 
-        header p {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
+.navbar {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
 
-        main {
-            max-width: 960px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-        }
+.navbar li {
+    margin-right: 20px;
+}
 
-        h2 {
-            font-size: 24px;
-            margin-bottom: 15px;
-        }
+.navbar a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+    transition: color 0.3s;
+}
 
-        .perfis {
-            display: flex;
-            justify-content: space-between;
-        }
+.navbar a:hover {
+    color: #fff; /* Manter a cor ao passar o mouse */
+}
 
-        .perfil {
-            flex-basis: calc(33.33% - 20px);
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
-        }
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
 
-        .perfil h3 {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
+/* Estilos para o formulário de busca */
+.search-form {
+    text-align: center;
+    margin-top: 20px;
+}
 
-        .perfil p {
-            font-size: 14px;
-            color: #555;
-            margin-bottom: 15px;
-        }
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
 
-        .perfil a {
-            display: inline-block;
-            background-color: #166BCE;
-            color: #fff;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+}
 
-        .perfil a:hover {
-            background-color: #125ea3;
-        }
+button {
+    background-color: #125ea3;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
 
-        footer {
-            text-align: center;
-            background-color: #333;
-            color: #fff;
-            padding: 10px 0;
-        }
+button:hover {
+    background-color: #104d8b;
+}
+
+/* Estilos para o rodapé */
+footer {
+    text-align: center;
+    background-color: #125ea3;
+    color: #fff;
+    padding: 10px 0;
+}
+
     </style>
-</head>
-
-<body>
     <header>
-        <h1>Bem-vindo ao Fórum de Perguntas e Respostas</h1>
-        <p>Pontuação: <span id="pontuacao">100</span></p>
-        <p>Nível: <span id="nivel">3</span></p>
+        <nav>
+            <ul class="navbar">
+                <li><a href="#">Cadastre-se</a></li>
+                <li><a href="#">Faça Login</a></li>
+            </ul>
+        </nav>
+        <h1>Fórum de Perguntas e Respostas</h1>
+        <form class="search-form" action="#" method="get">
+            <label for="pergunta">Faça uma pergunta:</label>
+            <input type="text" id="pergunta" name="pergunta" placeholder="Digite sua pergunta" required>
+            <button type="submit">Buscar</button>
+        </form>
     </header>
 
-    <main>
-        <section class="perguntas">
-            <h2>Perguntas Recentes</h2>
-            <ul>
-                <li>
-                    <a href="pergunta1.html">Como resolver um problema X?</a>
-                    <p>Pontuação: 20</p>
-                </li>
-                <li>
-                    <a href="pergunta2.html">Qual a melhor abordagem para Y?</a>
-                    <p>Pontuação: 15</p>
-                </li>
-                <!-- Adicione mais perguntas conforme necessário -->
-            </ul>
-        </section>
-
-        <section class="ranking">
-            <h2>Ranking de Usuários</h2>
-            <ol>
-                <li>
-                    <span class="rank">1.</span>
-                    <span class="usuario">Nome do Usuário 1</span>
-                    <span class="pontos">500 pontos</span>
-                </li>
-                <li>
-                    <span class="rank">2.</span>
-                    <span class="usuario">Nome do Usuário 2</span>
-                    <span class="pontos">450 pontos</span>
-                </li>
-                <!-- Adicione mais usuários conforme necessário -->
-            </ol>
-        </section>
-    </main>
+    <!-- Restante do conteúdo da página continua aqui -->
 
     <footer>
-        <p>&copy; 2023 Fórum de Perguntas e Respostas Gamificado</p>
+        <p>&copy; 2023 Fórum de Perguntas e Respostas</p>
     </footer>
 </body>
-
 </html>
