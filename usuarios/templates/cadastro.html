@@ -17,7 +17,7 @@
         </div>
         <div class="titulo"><h1>Faça seu cadastro</h1></div>
     `</br>
-        <form action="#" method="POST"> {% csrf_token %}
+        <form accept="{% url 'cadastro' %}" method="POST"> {% csrf_token %}
             <label for="nome">Nome:</label>
             <input type="text" id="nome" name="nome" required>
 
@@ -28,12 +28,15 @@
             <input type="text" id="nome_de_usuario" name="nome_de_usuario" required>
 
             <label for="curso">Curso:</label>
+            
             <select id="curso" name="curso" required>
-                <option value="Sistemas de Informação">Sistemas de Informação</option>
-                <option value="Psicologia">Psicologia</option>
-                <option value="Direito">Direito</option>
-                <option value="Pedagogia">Pedagogia</option>
+                
+                {% for curso in cursos %}
+                <option value="{{curso.id}}">{{curso.nome}}</option>
+                {% endfor %}
+
             </select>
+
 
             <label for="senha">Senha:</label>
             <input type="password" id="senha" name="senha" required>

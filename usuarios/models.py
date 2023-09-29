@@ -1,11 +1,16 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.core.exceptions import ValidationError
 
-def validate_matriulation(value):
-    if not value.isdigit():
-        raise ValidationError('A matricula deve conter apenas números')
+class Curso(models.Model):
+    nome = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.nome
     
+
 class Users(AbstractUser):
-    curso = models.CharField(max_length=100)
+    curso = models.ForeignKey(Curso, null= True, on_delete= models.DO_NOTHING)
     nome = models.CharField(max_length=200)
+
+
+

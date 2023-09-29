@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Aplicação Gamificada</title>
+    <link href="{% static 'core/css/home.css' %}" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Bem-vindo à Minha Aplicação Gamificada</h1>
+        <p>Desafie-se e divirta-se!</p>
+    </header>
+
+    <main>
+        <section class="game">
+            <h2>Escolha um Jogo</h2>
+            <div class="game-list">
+                <div class="game-card">
+                    <h3>Jogo 1</h3>
+                    <p>Descrição do Jogo 1</p>
+                    <a href={% url 'cadastro' %}>Cadastre-se</a>
+                </div>
+                <div class="game-card">
+                    <h3>Jogo 2</h3>
+                    <p>Descrição do Jogo 2</p>
+                    <a href={% url 'login' %}>Faça Login</a>
+                </div>
+                <!-- Adicione mais jogos conforme necessário -->
+            </div>
+        </section>
+
+        <section class="leaderboard">
+            <h2>Classificação</h2>
+            <ol>
+                <li>Nome do Jogador 1 - Pontuação: 1000</li>
+                <li>Nome do Jogador 2 - Pontuação: 800</li>
+                <!-- Adicione mais jogadores conforme necessário -->
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Minha Aplicação Gamificada</p>
+    </footer>
+</body>
+</html>
