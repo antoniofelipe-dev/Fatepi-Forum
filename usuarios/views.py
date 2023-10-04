@@ -28,31 +28,21 @@ def cadastro(request):
     # TODO ADD MENSSAGES DO DJANGO
         # Verifica se o email já existe
         if Users.objects.filter(email=email).exists():
-            return render(request, 'cadastro.html', {
-                'form': AuthenticationForm,
-                'error': 'Email já cadastrado',
-                'cursos': cursos
-            } )
+            return HttpResponse('Email já existe')
 
         # Verifica se o nome de usuário já existe
         elif Users.objects.filter(username=nome_de_usuario).exists():
-            return render(request, 'cadastro.html', {
-                'form': AuthenticationForm,
-                'error': 'Nome de usuário já existe',
-                'cursos': cursos
-            } )
-        
-        elif senha != confirmar_senha:
-            return render(request, 'cadastro.html', {
-                'form': AuthenticationForm,
-                'error': 'Senhas não coincidem',
-                'cursos': cursos
-            } )
+            return HttpResponse('Nome de usuário já existe')
         
         elif any(len(field.strip()) == 0 for field in [nome, email, nome_de_usuario, id_curso, senha, confirmar_senha]):
-            return render(request, 'cadastro.html')
+            return render(request, 'cadastro.html', {
+                'form': AuthenticationForm,
+                'error': 'Os campos são obrigatórios!'
+            })
 
             
+        elif senha != confirmar_senha:
+            return render(request, 'cadastro.html')
         
         curso = Curso.objects.get(id=id_curso)
 
