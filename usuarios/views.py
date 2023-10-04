@@ -1,12 +1,14 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from .models import Users, Curso
-from django.contrib.auth import authenticate, login as login_django
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
+from django.shortcuts import redirect
 
 
 # Create your views here.
 def cadastro(request):
+
     if request.method == 'GET':
         cursos = Curso.objects.all()
         return render(request, 'cadastro.html', {
@@ -14,6 +16,8 @@ def cadastro(request):
         })
     
     elif request.method == 'POST':
+        cursos = Curso.objects.all()
+
         nome = request.POST.get('nome')
         email = request.POST.get('email')
         nome_de_usuario = request.POST.get('nome_de_usuario')
@@ -24,26 +28,48 @@ def cadastro(request):
     # TODO ADD MENSSAGES DO DJANGO
         # Verifica se o email já existe
         if Users.objects.filter(email=email).exists():
-            return HttpResponse('Email já existe')
+            return render(request, 'cadastro.html', {
+                'form': AuthenticationForm,
+                'error': 'Email já cadastrado',
+                'cursos': cursos
+            } )
 
         # Verifica se o nome de usuário já existe
         elif Users.objects.filter(username=nome_de_usuario).exists():
-            return HttpResponse('Nome de usuário já existe')
+            return render(request, 'cadastro.html', {
+                'form': AuthenticationForm,
+                'error': 'Nome de usuário já existe',
+                'cursos': cursos
+            } )
+        
+        elif senha != confirmar_senha:
+            return render(request, 'cadastro.html', {
+                'form': AuthenticationForm,
+                'error': 'Senhas não coincidem',
+                'cursos': cursos
+            } )
         
         elif any(len(field.strip()) == 0 for field in [nome, email, nome_de_usuario, id_curso, senha, confirmar_senha]):
             return render(request, 'cadastro.html')
 
             
-        elif senha != confirmar_senha:
-            return render(request, 'cadastro.html')
         
         curso = Curso.objects.get(id=id_curso)
 
-        Users.objects.create_user(username=nome_de_usuario, email=email, password=senha, curso=curso, nome=nome)
-
-        return HttpResponse(f"Usuário(a) {nome} do curso {curso} cadastrado(a) com sucesso!")
-
-def login(request):
+        try:
+            Users.objects.create_user(username=nome_de_usuario, email=email, password=senha, curso=curso, nome=nome)
+            return render(request, 'cadastro.html', {
+                'form': AuthenticationForm,
+                'error': 'Usuário cadastrado com sucesso',
+                'cursos': cursos
+            } )
+        except:
+            return render(request, 'cadastro.html', {
+                'form': AuthenticationForm,
+                'error': 'Erro interno, tente novamente mais tarde',
+                'cursos': cursos
+            })
+def entrar(request):
     if request.method == 'GET':
         return render(request,'login.html')
     
@@ -62,8 +88,10 @@ def login(request):
             })
         
         else:
-            login_django(request, user)
-            return HttpResponse('Logado com sucesso!')
+            login(request, user)
+            return redirect('/')
 
 
-    
+def sair(request):
+    logout(request)
+    return redirect('/auth/entrar')
