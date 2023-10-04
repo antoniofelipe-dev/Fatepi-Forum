@@ -9,6 +9,9 @@ from django.shortcuts import redirect
 # Create your views here.
 def cadastro(request):
 
+    if request.user.is_authenticated:
+        return redirect('/')
+
     if request.method == 'GET':
         cursos = Curso.objects.all()
         return render(request, 'cadastro.html', {
@@ -59,7 +62,12 @@ def cadastro(request):
                 'error': 'Erro interno, tente novamente mais tarde',
                 'cursos': cursos
             })
+        
 def entrar(request):
+
+    if request.user.is_authenticated:
+        return redirect('/')
+
     if request.method == 'GET':
         return render(request,'login.html')
     

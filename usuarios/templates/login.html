@@ -13,11 +13,8 @@
             <img src="{%static 'usuarios/img/Logo_FF.png'%}" alt="Logo">
         </div>
         <div class="titulo"> <h1>Faça Login</h1> </div>
-
-        </br>
-        {{error}}
-
-        <form accept="{% url 'login' %}" method="POST"> {% csrf_token %}
+        </br> {{error}}
+        <form action="{% url 'entrar' %}" method="POST"> {% csrf_token %}
             <label for="nome-de-usuario">Nome de Usuário:</label>
             <input type="text" id="nome-de-usuario" name="nome-de-usuario" required>
 
