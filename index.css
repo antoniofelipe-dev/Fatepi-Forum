@@ -1,20 +1,13 @@
-*{
-    margin: 0px;
+:root {
+    --my-custom-color: #0d6efd;
 }
 
-body{
-    background-image: linear-gradient(#0d6efd, #00b3FF);
-
+.bg-custom {
+    background-color: var(--my-custom-color);
 }
 
-.navbar{
-    padding-top: 56px;
-}
-
-.container-lg{
+.nav-link {
+    font-size: 1rem;
     color: white;
-    font-family: Trebuchet MS, sans-serif;
 }
-.container-lg main{
-    display: block;
-}
+
